@@ -1,0 +1,6 @@
+[Tue Jul 31 2018 - 17:47:34] >> Hello jonmaldia! New note: your age is 42
+
+[Tue Jul 31 2018 - 17:48:22] >> Hello jonmaldia! New note: your age is 42
+
+[Tue Jul 31 2018 - 17:49:23] >> Hello jonmaldia! New note: your age is 42
+
