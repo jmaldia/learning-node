@@ -41,6 +41,8 @@ let deleteNote = (title) => {
     let notes = fetchNotes();
     let notesWithDeleted = notes.filter((note) => note.title !== title);
     saveNotes(notesWithDeleted);
+
+    return (notes.length !== notesWithDeleted.length) ? true : false;
 };
 
 module.exports = {
