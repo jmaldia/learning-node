@@ -26,8 +26,7 @@ let addNote = (title, body) => {
     if (duplicateNotes.length === 0) {
         notes.push(note);
         saveNotes(notes);
-    } else {
-        console.log('The note title already exists. Please change the title of your note.');
+        return note;
     }
 };
 
