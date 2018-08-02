@@ -22,7 +22,7 @@ if (command === 'add') {
         console.log('The note title already exists. Please change the title of your note.');
     } else {
         console.log(`Note Successfully Added\n------`);
-        console.log`(\nTitle: ${note.title}`);
+        console.log(`\nTitle: ${note.title}`);
         console.log(`\nBody: ${note.body}`);
     }
 } else if (command === 'list') {

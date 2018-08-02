@@ -2,6 +2,7 @@ console.log('Starting notes.js');
 
 const fs = require('fs');
 
+// Utility function to get the notes
 let fetchNotes = () => {
     try {
         let notesString = fs.readFileSync('notes-data.json');
@@ -10,7 +11,7 @@ let fetchNotes = () => {
         return [];
     }
 };
-
+// Utility function to save the notes
 let saveNotes = (notes) => {
     fs.writeFileSync('notes-data.json', JSON.stringify(notes));
 };
@@ -37,7 +38,9 @@ let readNote = (title) => {
     console.log(`This is your note: ${title}`);
 };
 let deleteNote = (title) => {
-    console.log(`${title} deleted`);
+    let notes = fetchNotes();
+    let notesWithDeleted = notes.filter((note) => note.title !== title);
+    saveNotes(notesWithDeleted);
 };
 
 module.exports = {
