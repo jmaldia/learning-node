@@ -15,6 +15,12 @@ let command = argv._[0];
 console.log('\n------\nCommand: ', command);
 console.log('Yargs: ', argv);
 
+// Utility function to print items
+let print = (note) => {
+    console.log(`-----\nTitle: ${note.title}\n-----`);
+    console.log(`Body: ${note.body}\n-----`);
+}
+
 if (command === 'add') {
     let noteAdded = notes.addNote(argv.title, argv.body);
    
@@ -26,9 +32,24 @@ if (command === 'add') {
         console.log(`\nBody: ${noteAdded.body}`);
     }
 } else if (command === 'list') {
-    notes.getAll();
+    let notesRetrievedAll = notes.getAll();
+
+    if (notesRetrievedAll) {
+        notesRetrievedAll.forEach((note) => {
+            console.log(`-----\nTitle: ${note.title}\n-----`);
+            console.log(`Body: ${note.body}\n-----`);
+        });
+    }
 } else if (command === 'read') {
-    notes.readNote(argv.title);
+    let noteRetrieved = notes.readNote(argv.title);
+    console.log(retrievedNote);
+
+    if (noteRetrieved) {
+        console.log(`-----\nTitle: ${noteRetrieved[0].title}\n-----`);;
+        console.log(`Body: ${noteRetrieved[0].body}\n-----`);
+    } else {
+        console.log('The note does not exist');
+    }
 } else if (command === 'remove' || command === 'delete') {
     let noteRemoved = notes.deleteNote(argv.title);
     let message = noteRemoved ? 'The note was deleted' : 'The note does not exist';

@@ -32,10 +32,13 @@ let addNote = (title, body) => {
 };
 
 let getAll = () => {
-    console.log(`Getting all notes`);
+    return fetchNotes();
 };
 let readNote = (title) => {
-    console.log(`This is your note: ${title}`);
+    let notes = fetchNotes();
+    let noteRetrieved = notes.filter((note) => note.title === title);
+
+    return noteRetrieved.length === 1 ? noteRetrieved : false;
 };
 let deleteNote = (title) => {
     let notes = fetchNotes();
