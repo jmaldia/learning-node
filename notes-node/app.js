@@ -15,38 +15,22 @@ let command = argv._[0];
 console.log('\n------\nCommand: ', command);
 console.log('Yargs: ', argv);
 
-// Utility function to print items
-let print = (note) => {
-    console.log(`-----\nTitle: ${note.title}\n-----`);
-    console.log(`Body: ${note.body}\n-----`);
-}
-
 if (command === 'add') {
     let noteAdded = notes.addNote(argv.title, argv.body);
    
     if (noteAdded === undefined) {
         console.log('The note title already exists. Please change the title of your note.');
     } else {
-        console.log(`Note Successfully Added\n------`);
-        console.log(`\nTitle: ${noteAdded.title}`);
-        console.log(`\nBody: ${noteAdded.body}`);
+        console.log(`Note Successfully Added\n`);
+        notes.logNote(noteAdded);
     }
 } else if (command === 'list') {
-    let notesRetrievedAll = notes.getAll();
-
-    if (notesRetrievedAll) {
-        notesRetrievedAll.forEach((note) => {
-            console.log(`-----\nTitle: ${note.title}\n-----`);
-            console.log(`Body: ${note.body}\n-----`);
-        });
-    }
+    notes.getAll();
 } else if (command === 'read') {
     let noteRetrieved = notes.readNote(argv.title);
-    console.log(retrievedNote);
 
     if (noteRetrieved) {
-        console.log(`-----\nTitle: ${noteRetrieved[0].title}\n-----`);;
-        console.log(`Body: ${noteRetrieved[0].body}\n-----`);
+        notes.logNote(noteRetrieved[0]);
     } else {
         console.log('The note does not exist');
     }

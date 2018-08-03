@@ -15,6 +15,15 @@ let fetchNotes = () => {
 let saveNotes = (notes) => {
     fs.writeFileSync('notes-data.json', JSON.stringify(notes));
 };
+// Utility function to print items
+let logNote = (note) => {
+    debugger;
+    console.log(`----------------------------------------\n`);
+    console.log(`| Title: ${note.title}\n`);
+    console.log(`----------------------------------------\n`);
+    console.log(`| Body: ${note.body}\n`);
+    console.log(`----------------------------------------`);
+}
 
 let addNote = (title, body) => {
     let notes = fetchNotes();
@@ -32,7 +41,10 @@ let addNote = (title, body) => {
 };
 
 let getAll = () => {
-    return fetchNotes();
+    let notes = fetchNotes();
+    notes.forEach((note) => {
+        logNote(note);
+    });
 };
 let readNote = (title) => {
     let notes = fetchNotes();
@@ -52,5 +64,6 @@ module.exports = {
     addNote, // identical to this -> addNote: addNote
     getAll, 
     readNote, 
-    deleteNote
+    deleteNote, 
+    logNote
 };
