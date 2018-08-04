@@ -25,7 +25,10 @@ if (command === 'add') {
         notes.logNote(noteAdded);
     }
 } else if (command === 'list') {
-    notes.getAll();
+    let allNotes = notes.getAll();
+    debugger;
+    console.log(allNotes);
+    allNotes.forEach((note) => notes.logNote(note));
 } else if (command === 'read') {
     let noteRetrieved = notes.readNote(argv.title);
 

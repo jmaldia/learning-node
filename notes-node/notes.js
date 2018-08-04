@@ -17,7 +17,6 @@ let saveNotes = (notes) => {
 };
 // Utility function to print items
 let logNote = (note) => {
-    debugger;
     console.log(`----------------------------------------\n`);
     console.log(`| Title: ${note.title}\n`);
     console.log(`----------------------------------------\n`);
@@ -41,17 +40,16 @@ let addNote = (title, body) => {
 };
 
 let getAll = () => {
-    let notes = fetchNotes();
-    notes.forEach((note) => {
-        logNote(note);
-    });
+    return fetchNotes();
 };
+
 let readNote = (title) => {
     let notes = fetchNotes();
     let noteRetrieved = notes.filter((note) => note.title === title);
 
     return noteRetrieved.length === 1 ? noteRetrieved : false;
 };
+
 let deleteNote = (title) => {
     let notes = fetchNotes();
     let notesWithDeleted = notes.filter((note) => note.title !== title);
