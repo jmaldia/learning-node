@@ -1,5 +1,3 @@
-console.log('Starting notes.js');
-
 const fs = require('fs');
 
 // Utility function to get the notes
@@ -17,11 +15,10 @@ let saveNotes = (notes) => {
 };
 // Utility function to print items
 let logNote = (note) => {
-    console.log(`----------------------------------------\n`);
-    console.log(`| Title: ${note.title}\n`);
-    console.log(`----------------------------------------\n`);
-    console.log(`| Body: ${note.body}\n`);
     console.log(`----------------------------------------`);
+    console.log(`----------------------------------------\n`);
+    console.log(`Title: ${note.title}\n`);
+    console.log(`Body: \n${note.body}\n`);
 }
 
 let addNote = (title, body) => {
