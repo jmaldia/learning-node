@@ -14,10 +14,10 @@ const argv = yargs
     .alias('help', 'h')
     .argv;
 
-let encodedArg = encodeURIComponent(argv.a);
+let encodedAdress = encodeURIComponent(argv.a);
 
 request({
-    url: `http://maps.googleapis.com/maps/api/geocode/json?address=${encodedArg}`,
+    url: `http://maps.googleapis.com/maps/api/geocode/json?address=${encodedAdress}`,
     json: true
 }, (error, response, body) => {
     // console.log(JSON.stringify(body, undefined, 2));
