@@ -22,8 +22,6 @@ let geocodeAddress = (address, callback) => {
             });
         }
     });
-
-    // return body;
 }
 
 // Export the function so that you can use it on app.js
