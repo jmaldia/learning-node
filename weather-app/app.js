@@ -32,7 +32,7 @@ geocode.geocodeAddress(argv.address, (errorMessage, results) => {
         if(errorMessage) {
             console.log(errorMessage);
         } else {
-            console.log(`It's currently ${weatherResults.temperature} degrees. \nIt feels like ${weatherResults.apparentTemperature} degrees.`);
+            console.log(`- It's currently ${weatherResults.temperature} degrees. \n- It feels like ${weatherResults.apparentTemperature} degrees.`);
         }
     });
 });
