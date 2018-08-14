@@ -6,7 +6,6 @@ let app = express(); // create new express app
 
 hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs')
-app.use(express.static(__dirname + '/public'));
 
 // next tells when middleware is done
 // things won't move until next is called
@@ -22,6 +21,16 @@ app.use((req, res, next) => {
     });
     next();
 });
+
+// Comment out to remove from Maintenance mode
+app.use((req, res, next) => {
+    res.render('maintenance.hbs', {
+        pageTitle: 'Under Maintenance'
+    });
+});
+
+
+app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
