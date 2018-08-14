@@ -1,26 +1,60 @@
 const express = require('express');
+const hbs = require('hbs');
+const fs = require('fs');
 
 let app = express(); // create new express app
 
+hbs.registerPartials(__dirname + '/views/partials')
+app.set('view engine', 'hbs')
 app.use(express.static(__dirname + '/public'));
+
+// next tells when middleware is done
+// things won't move until next is called
+app.use((req, res, next) => {
+    let now = new Date().toString();
+    let log = `${now} ${req.method} ${req.url}`;
+
+    console.log(log);
+    fs.appendFile('server.log', log + '\n', (err) => {
+        if (err) {
+            console.log('Unable to append to server.log');
+        }
+    });
+    next();
+});
+
+hbs.registerHelper('getCurrentYear', () => {
+    return new Date().getFullYear();
+});
+
+hbs.registerHelper('screamIt', (text) => {
+    return text.toUpperCase();
+});
 
 // Route to serve up when a get request happens 
 // request = req
 // response = res
 // Send text to server
 app.get('/', (req, res) => {
+    res.render('home.hbs', {
+        pageTitle: 'Home Page', 
+        welcomeMessage: 'Welcome to our site bruv!'
+    });
+
     // res.send('<h1>Hello Express!</h1>');
-    res.send({
-        name: 'Jon',
-        likes: [
-            'Coding',
-            'Watching Movies'
-        ]
-    })
+    // res.send({
+    //     name: 'Jon',
+    //     likes: [
+    //         'Coding',
+    //         'Watching Movies'
+    //     ]
+    // })
 });
 
 app.get('/about', (req, res) => {
-    res.send('This is the about page')
+    res.render('about.hbs', {
+        pageTitle: 'About Page'
+    });
 });
 
 app.get('/bad', (req, res) => {
