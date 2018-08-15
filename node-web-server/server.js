@@ -2,6 +2,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+// process.ENV stores all our environment variables
+const port = process.env.PORT || 3000;
+
 let app = express(); // create new express app
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -73,6 +76,6 @@ app.get('/bad', (req, res) => {
 });
 
 // binds to port in machine to serve up
-app.listen(3000, () => {
-    console.log('Server is up in port 3000');
+app.listen(port, () => {
+    console.log(`Server is up in port ${port}`);
 });
